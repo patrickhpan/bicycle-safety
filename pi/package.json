@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "pi-gpio": "0.0.8"
+    "pigpio": "^0.4.0"
   }
 }
