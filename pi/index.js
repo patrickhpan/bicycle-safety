@@ -3,5 +3,6 @@ const CONFIG = require('./config');
 const LED = require('./hardware/LED');
 
 let led = new LED(CONFIG.GPIO.LED);
-let isOn = false;
-setInterval(led.toggle, 1000)
+setInterval(function() { 
+	led.setLevel(Math.round(Math.random() * 255))
+}, 500)
