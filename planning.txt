@@ -1,0 +1,4 @@
+The pi should operate autonomously, meaning it does not need internet to work.
+The pi will run two node servers. One will host APIs that relate to data
+processing and that can respond to queries about a given location and similar.
+The other will connect to hardware (LED, GPS).
