@@ -1,7 +1,7 @@
 const SerialPort = require('serialport');
 const CONFIG = require('../config');
 
-var gpsPort = SerialPort(CONFIG.GPS.file, {
+var gpsPort = new SerialPort(CONFIG.GPS.file, {
     parser: SerialPort.parsers.readline('\n')
 });
 
