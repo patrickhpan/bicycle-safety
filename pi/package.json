@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "pigpio": "^0.4.0"
+    "pigpio": "^0.4.0",
+    "serialport": "^4.0.3"
   }
 }
