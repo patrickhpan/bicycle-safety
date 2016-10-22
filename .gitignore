@@ -7,3 +7,6 @@ node_modules
 
 # Macs
 .DS_Store
+
+# Jupyter
+.ipynb_checkpoints
