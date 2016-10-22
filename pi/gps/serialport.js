@@ -8,13 +8,14 @@ var gpsPort = new SerialPort(CONFIG.GPS.file, {
 let filterGPGLL = line => !!(line.match(/^\$GPGLL/));
 let gpgllToLocation = line => {
     let values = line.split(',');
-    let latitude = Number(values[1]);
-    let longitude = Number(values[3]);
+    
+    let latitude = Number(values[1].slice(0, 2));
+    let latMins = Number(values[1].slice(2)) / 60;
+    let longitude = Number(values[3].slice(1, 3));
+    let longMins = Number(values[3].slice(3)) / 60;
+    latitude += latMins;
+    longitude += longMins;
 
-    var latMinute = latitude % 100;
-    latitude = (latitude % 100) / 100 + latMinute / 60;
-    var longMinute = longitude % 100;
-    longitude = (longitude % 100) / 100 + longMinute / 60;
 
     if (values[2] === 'S') {
         latitude *= -1;
