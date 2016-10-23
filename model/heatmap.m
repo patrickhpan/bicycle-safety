@@ -28,7 +28,7 @@ colormap(hot(256));
 colorbar;
 hold on;
 
-imwrite(edm, 'heatmap.png');
+% imwrite(edm, 'heatmap.png');
 
 end
 
