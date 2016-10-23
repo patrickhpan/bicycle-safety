@@ -5,7 +5,6 @@ class GPSReader {
     constructor(file, callback) {
         this.file = file;
         this.callback = callback;
-        this.filter = filter;
 
         this._serialPort = new SerialPort(this.file, {
             parser: SerialPort.parsers.readline('\n')
@@ -13,7 +12,7 @@ class GPSReader {
 
         this._serialPort.on('data', data => {
             if (this.filterGPGLL(data)) {
-                let location = gpgllToLocation(data);
+                let location = this.gpgllToLocation(data);
                 callback(location);
             }
         });
