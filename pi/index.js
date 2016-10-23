@@ -13,11 +13,11 @@ let callback = data => {
 	if (data[0] !== 0 && data[1] !== 0) {
 		green.on()
 		red.off()
-		stream.write(`${new Date().toString()}: data[0], data[1]\n`)
+		stream.write(`${new Date().toString()}: ${data[0]}, ${data[1]}\n`)
 	} else {
 		green.off()
 		red.on()
-		stream.write(`${new Date().toString()}: failed to lock`)
+		stream.write(`${new Date().toString()}: failed to lock\n`)
 	}
 }
 
