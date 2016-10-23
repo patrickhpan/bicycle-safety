@@ -1,6 +1,12 @@
 const CONFIG = {
-    GPIO: {
-        LED: 17
+    GPS: {
+        file: '/dev/ttyACM0'
+    },
+    GPIO: { 
+        LED: {
+            RED: 17,
+            GREEN: 18
+        }
     }
 }
 

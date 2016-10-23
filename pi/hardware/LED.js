@@ -1,13 +1,13 @@
-const GPIO = require('pigpio').GPIO;
+const Gpio = require('pigpio').Gpio;
 
 class LED {
-    constuctor(pin, min = 0, max = 255) {
+    constructor(pin, min = 0, max = 255) {
         this.pin = pin;
         this.min = min;
         this.max = max;
         this.level = this.min;
 
-        this._led = new GPIO(pin, { mode: GPIO.output });
+        this._led = new Gpio(pin, { mode: Gpio.OUTPUT });
     }
     _setLevel(level) {
         this.level = level;

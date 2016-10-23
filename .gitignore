@@ -5,3 +5,8 @@ npm-debug.log*
 # node.js
 node_modules
 
+# Macs
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints
