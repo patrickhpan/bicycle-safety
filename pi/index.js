@@ -1,26 +1,36 @@
 const fs = require('fs');
 const GPIO = require('pigpio').Gpio;
-const LED = require('./hardware/LED');
+// const LED = require('./hardware/LED');
+const NumberDisplay = require('./hardware/NumberDisplay');
 const GPSReader = require('./hardware/GPSReader');
 
 const CONFIG = require('./config');
 
-let red = new LED(CONFIG.GPIO.LED.RED);
-let green = new LED(CONFIG.GPIO.LED.GREEN);
-let stream = fs.createWriteStream(`gps-${+new Date()}.txt`);
+var nDisplay = new NumberDisplay(CONFIG.GPIO.NUMBERDISPLAY);
+var i = 0;
 
-let callback = data => {
-	if (data[0] !== 0 && data[1] !== 0) {
-		green.on()
-		red.off()
-		stream.write(`${new Date().toString()}: data[0], data[1]\n`)
-	} else {
-		green.off()
-		red.on()
-		stream.write(`${new Date().toString()}: failed to lock`)
-	}
-}
+setInterval(function () { 
+	nDisplay.setNumber(i++);
+}, 500)
 
-stream.once('open', () => {
-	let gps = new GPSReader(CONFIG.GPS.file, callback);
-})
+// let red = new LED(CONFIG.GPIO.LED.RED);
+// let green = new LED(CONFIG.GPIO.LED.GREEN);
+//let stream = fs.createWriteStream(`gps-${+new Date()}.txt`);
+// let date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+// let stream = fs.createWriteStream('gps-${date}.txt');
+
+// let callback = data => {
+// 	if (data[0] !== 0 && data[1] !== 0) {
+// 		green.on()
+// 		red.off()
+// 		stream.write(`${new Date().toString()}: data[0], data[1]\n`)
+// 	} else {
+// 		green.off()
+// 		red.on()
+// 		stream.write(`${new Date().toString()}: failed to lock`)
+// 	}
+// }
+
+// stream.once('open', () => {
+// 	let gps = new GPSReader(CONFIG.GPS.file, callback);
+// })
