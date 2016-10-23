@@ -1,16 +1,16 @@
 const LED = require('./LED');
 
 const NUMBERS = {
-    0: [1, 1, 1, 1, 1, 1, 0, 0],
-    1: [0, 1, 1, 0, 0, 0, 0, 0],
-    2: [1, 1, 0, 1, 1, 0, 1, 0],
-    3: [1, 1, 1, 1, 0, 0, 1, 0],
-    4: [0, 1, 1, 0, 0, 1, 1, 0],
-    5: [1, 0, 1, 1, 0, 1, 1, 0],
-    6: [1, 0, 1, 1, 1, 1, 1, 0],
-    7: [1, 1, 1, 0, 0, 1, 0, 0],
-    8: [1, 1, 1, 1, 1, 1, 1, 0],
-    9: [1, 1, 1, 0, 0, 1, 1, 0],
+    0: [1, 1, 1, 1, 1, 1, 0],
+    1: [0, 1, 1, 0, 0, 0, 0],
+    2: [1, 1, 0, 1, 1, 0, 1],
+    3: [1, 1, 1, 1, 0, 0, 1],
+    4: [0, 1, 1, 0, 0, 1, 1],
+    5: [1, 0, 1, 1, 0, 1, 1],
+    6: [1, 0, 1, 1, 1, 1, 1],
+    7: [1, 1, 1, 0, 0, 1, 0],
+    8: [1, 1, 1, 1, 1, 1, 1],
+    9: [1, 1, 1, 0, 0, 1, 1],
 }
 
 class NumberDisplay {
@@ -22,8 +22,9 @@ class NumberDisplay {
             throw "PinNotFoundException";
         }
         this._leds = [
-            a, b, c, d, e, f, g, dp
+            a, b, c, d, e, f, g
         ].map(pin => new LED(pin));
+        this._dp = new LED(dp);
     }
     setNumber(number) {
         this.applyLayout(NUMBERS[number]);
@@ -36,6 +37,12 @@ class NumberDisplay {
                led.off(); 
             }
         })
+    }
+    dpOn() {
+        this._dp.on();
+    }
+    dpOff() {
+        this._dp.off();
     }
 }
 

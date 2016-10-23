@@ -1,20 +1,32 @@
 const fs = require('fs');
+const request = require('request');
 const GPIO = require('pigpio').Gpio;
-// const LED = require('./hardware/LED');
 const NumberDisplay = require('./hardware/NumberDisplay');
 const GPSReader = require('./hardware/GPSReader');
 
 const CONFIG = require('./config');
 
 var nDisplay = new NumberDisplay(CONFIG.GPIO.NUMBERDISPLAY);
-var i = 0;
 
-setInterval(function () { 
-	i = i % 10;
-	nDisplay.setNumber(i++);
-}, 20)
+let callback = data => {
+	console.log(`(${data[0]}, ${data[1]})`)
+	if (data[0] !== 0 && data[1] !== 0) {
+		request(`http://localhost:8000/coordinate?lat=${data[0]}&long=${data[1]}`, (err, body, data) => {
+			if (!err) {
+				let num = Number(body);
+				console.log(num)
+				nDisplay.setNumber(num);
+				nDisplay.dpOff();	
+			}
+		})
+	} else {
+		nDisplay.dpOn()
+	}
+}
 
-// let red = new LED(CONFIG.GPIO.LED.RED);
+let gps = new GPSReader(CONFIG.GPS.file, callback);
+
+
 // let green = new LED(CONFIG.GPIO.LED.GREEN);
 //let stream = fs.createWriteStream(`gps-${+new Date()}.txt`);
 // let date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "pigpio": "^0.4.0",
+    "request": "^2.75.0",
     "serialport": "^4.0.3"
   }
 }
