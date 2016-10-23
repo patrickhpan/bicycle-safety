@@ -10,8 +10,9 @@ var nDisplay = new NumberDisplay(CONFIG.GPIO.NUMBERDISPLAY);
 var i = 0;
 
 setInterval(function () { 
+	i = i % 10;
 	nDisplay.setNumber(i++);
-}, 500)
+}, 20)
 
 // let red = new LED(CONFIG.GPIO.LED.RED);
 // let green = new LED(CONFIG.GPIO.LED.GREEN);

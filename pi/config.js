@@ -8,9 +8,9 @@ const CONFIG = {
             GREEN: 18
         },
         NUMBERDISPLAY: {
-            a: 26,
+            a: 4,
             b: 17,
-            c: 16,
+            c: 18,
             d: 27,
             e: 22,
             f: 23,

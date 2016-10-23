@@ -21,20 +21,19 @@ class NumberDisplay {
         if (!(a && b && c && d && e && f && g && dp)) {
             throw "PinNotFoundException";
         }
-        this._pins = {
+        this._leds = [
             a, b, c, d, e, f, g, dp
-        }
+        ].map(pin => new LED(pin));
     }
     setNumber(number) {
-        number = number % 10;
         this.applyLayout(NUMBERS[number]);
     }
     applyLayout(layout) {
-        this._pins.forEach(pin => {
-            if (layout.shift() === 1) {
-                pin.on();
+        this._leds.forEach((led,i) => {
+            if (layout[i] === 1) {
+                led.on();
             } else {
-                pin.off();
+               led.off(); 
             }
         })
     }
